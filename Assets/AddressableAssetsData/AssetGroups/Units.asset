@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Units
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Units
+  m_GUID: ec4e3ef261cf2444fb3295d4cce610e4
+  m_SerializeEntries:
+  - m_GUID: 084f555159e6c3c448c68689910eabc3
+    m_Address: Assets/Patterns/Creational Patterns/Factory Method/ScriptableObjects/Drunkard.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Units
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0edec5d0f5901874bbf7019f2b24ec1a
+    m_Address: Assets/Patterns/Creational Patterns/Prototype/Prefabs/Cylinder.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Units
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b3e6826d3e78b340bd2dc9bd852969b
+    m_Address: Assets/Patterns/Creational Patterns/Factory Method/ScriptableObjects/Knight.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Units
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: fde57878d0f3fa6488f2493f0837b9a1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a808303d5cf182848b281f4155e8ac5a, type: 2}
+    - {fileID: 11400000, guid: 51f696c458390e645bee27d463fc27a5, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283381c3bade49318922eabf451b54d2, type: 3}
+  m_Name: CatalogConfig
+  m_EditorClassIdentifier: Assembly-CSharp::CatalogBootstrapConfig
+  catalogs:
+  - coreCatalog: {fileID: 11400000, guid: 158fd65fa0d7b514d95e6a1ff0b48dfa, type: 2}
+    modelCatalog:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - coreCatalog: {fileID: 11400000, guid: d0a64ca833bb7a14eaace9bf16e21bae, type: 2}
+    modelCatalog:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

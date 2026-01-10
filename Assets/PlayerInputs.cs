@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
@@ -25,6 +26,9 @@ public class PlayerInputs : MonoBehaviour
 
         nextAction = inputSystem.FindActionMap("Player").FindAction("Next");
         previousAction = inputSystem.FindActionMap("Player").FindAction("Previous");
+        var catalogConfig = await Addressables.LoadAssetAsync<CatalogBootstrapConfig>("Catalog").Task;
+        var catalogRegistry = await new CatalogBootstrap().BootstrapAsync(catalogConfig);
+        
         foreach (var map in inputSystem.actionMaps)
         {
             if (map.name.Contains("Creation"))
@@ -32,13 +36,12 @@ public class PlayerInputs : MonoBehaviour
                 var factoryName = map.name.Replace("Creation", "Factory");
                 var foundFactory = types.FirstOrDefault(f => f.Name == factoryName);
                 if (foundFactory == null) continue;
-                if (Activator.CreateInstance(foundFactory) is not ICreationFactory factory) continue;
+                if (Activator.CreateInstance(foundFactory,catalogRegistry) is not ICreationFactory factory) continue;
                 creationModes.Add(new CreationMode()
                 {
                     Factory = factory,
                     InputActionMap = map
                 });
-                await factory.InitializeAsync();
             }
         }
 

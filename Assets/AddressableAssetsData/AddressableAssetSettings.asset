@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 591dc5ccedcf58141b6c1fb68ba27edf
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: bf34a097bced2a6892ef299aee6ba5b5
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -61,6 +61,7 @@ MonoBehaviour:
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: 71cadde07819fb74e919b93fb4d537fa, type: 2}
+  - {fileID: 11400000, guid: 90264bb800c2e6d40ab19272d0c0d9ac, type: 2}
   - {fileID: 11400000, guid: bb1a8e2efedeb7e46983ab7b0eaa57fb, type: 2}
   - {fileID: 11400000, guid: fae36ce117e2bd748966fffc15b5b81b, type: 2}
   - {fileID: 11400000, guid: b3e6c19c08ef7e440afa6494589fb822, type: 2}
@@ -107,6 +108,7 @@ MonoBehaviour:
     - Units
     - Buildings
     - CloneMaterial
+    - Catalog
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: b2d47871ba7aa354baaea16cda3c107c, type: 2}

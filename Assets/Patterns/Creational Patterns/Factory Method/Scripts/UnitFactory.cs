@@ -10,10 +10,7 @@ using UnityEngine.InputSystem;
 public class UnitFactory : ICreationFactory
 {
     private readonly UnitCatalog catalog;
-
-    public List<GameObject> UnitsToCreate = new();
     private List<Unit> _createdUnits = new();
-    private InputActionMap _inputActionMap;
 
     public UnitFactory(CatalogRegistry catalogRegistry)
     {
@@ -22,11 +19,11 @@ public class UnitFactory : ICreationFactory
 
     public void Create(string unitName)
     {
-        var selectedUnit = catalog.Entries.FirstOrDefault(e => e.name == unitName);
+        var selectedUnit = catalog.Entries.FirstOrDefault(e => e.name == unitName).Prefab;
         if (selectedUnit is not null)
         {
             var gameObject = GameObject.Instantiate(selectedUnit, Vector3.zero, Quaternion.identity);
-            _createdUnits.Add(gameObject.Prefab.GetComponent<Unit>());
+            _createdUnits.Add(gameObject.GetComponent<Unit>());
         }
     }
 }

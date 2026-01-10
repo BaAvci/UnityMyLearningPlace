@@ -14,11 +14,11 @@ public class BuildingFactory : ICreationFactory
 
     public void Create(string buildingName)
     {
-        var selectedBuilding = buildingCatalog.Entries.FirstOrDefault(e => e.name == buildingName);
+        var selectedBuilding = buildingCatalog.Entries.FirstOrDefault(e => e.name == buildingName)?.Prefab;
         if (selectedBuilding is not null)
         {
             var gameObject = GameObject.Instantiate(selectedBuilding, Vector3.zero, Quaternion.identity);
-            createdBuildings.Add(gameObject.Prefab.GetComponent<Unit>());
+            createdBuildings.Add(gameObject.GetComponent<Unit>());
         }
     }
 }

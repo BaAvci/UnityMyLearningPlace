@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff46ebe0e914776b02d6db892e56967, type: 3}
   m_Name: DefaultBuildingCatalog
   m_EditorClassIdentifier: Assembly-CSharp::BuildingCatalog
-  entries: []
+  entries:
+  - {fileID: 11400000, guid: 999ce889e49ccdf478dfffa7f98e0a2b, type: 2}
+  - {fileID: 11400000, guid: e582145b4b477ec42a5cb029a1cc4a73, type: 2}

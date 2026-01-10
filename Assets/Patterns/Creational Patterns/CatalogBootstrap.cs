@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class CatalogBootstrap
+public class CatalogBootstrap 
 {
-    [SerializeField] private CatalogBootstrapConfig config;
+    //[SerializeField] private CatalogBootstrapConfig config;
 
-    public async Task<CatalogRegistry> BootstrapAsync()
+    public async Task<CatalogRegistry> BootstrapAsync(CatalogBootstrapConfig config)
     {
         var registry = new CatalogRegistry();
 

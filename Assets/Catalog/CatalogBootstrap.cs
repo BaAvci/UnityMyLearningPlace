@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class CatalogBootstrap 
+public class CatalogBootstrap
 {
     //[SerializeField] private CatalogBootstrapConfig config;
 
@@ -12,13 +12,13 @@ public class CatalogBootstrap
 
         foreach (var catalog in config.catalogs)
         {
-            if (catalog.modelCatalog == null)
-                continue;
-
-            var handle = catalog.modelCatalog.LoadAssetAsync();
-            var modCatalog = await handle.Task;
-            catalog.coreCatalog.Merge(modCatalog);
-            Addressables.Release(handle);
+            if (catalog.modelCatalog.RuntimeKeyIsValid())
+            {
+                var handle = catalog.modelCatalog.LoadAssetAsync();
+                var modCatalog = await handle.Task;
+                catalog.coreCatalog.Merge(modCatalog);
+                Addressables.Release(handle);
+            }
 
             registry.Register(catalog.coreCatalog);
         }

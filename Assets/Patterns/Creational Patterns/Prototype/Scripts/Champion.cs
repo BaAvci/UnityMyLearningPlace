@@ -5,34 +5,37 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 
 public class Champion : MonoBehaviour, ICloneable<Champion>
 {
-    [SerializeField] private float damage = 5;
-    [SerializeField] private float health = 20;
-    private float outgoingDamageIncreaseModifier = 1;
+    [Header("BaseStats")] [SerializeField] private float damage = 5;
+    [SerializeField] private float maxHealth = 20;
+
+    [Header("Runtime")] private float currentHealth;
+
+    [Header("Modifiers")] private float outgoingDamageIncreaseModifier = 1;
     private float incomingDamageIncreaseModifier = 1;
+
+    public bool IsCLone { get; private set; }
+
     [SerializeField] private Item[] items = new Item[6];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentHealth = maxHealth;
         items[0] = new MantaStyle();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void TakeDamage(float incomingDamage)
     {
-        health -= incomingDamage * incomingDamageIncreaseModifier;
+        currentHealth -= incomingDamage * incomingDamageIncreaseModifier;
     }
 
     public void Heal(float heal)
     {
-        health += heal;
+        currentHealth += heal;
     }
 
     public void DealDamage(Champion target)
@@ -40,19 +43,56 @@ public class Champion : MonoBehaviour, ICloneable<Champion>
         target.TakeDamage(damage * outgoingDamageIncreaseModifier);
     }
 
-    public Champion Clone(int cloneAmount, float outgoingDamageIncrease, float incomingDamageIncrease)
+    public void UseItem(int itemIndex)
+    {
+        if (itemIndex >= 0 && itemIndex < items.Length - 1)
+        {
+            items[itemIndex].Use(this);
+        }
+    }
+
+    public void ApplyDamageModifiers(float outgoingMultiplier, float incomingMultiplier)
+    {
+        outgoingDamageIncreaseModifier = outgoingMultiplier;
+        incomingDamageIncreaseModifier = incomingMultiplier;
+    }
+
+    public Champion Clone()
     {
         var clone = Instantiate(this);
-        clone.outgoingDamageIncreaseModifier = outgoingDamageIncrease;
-        clone.incomingDamageIncreaseModifier = incomingDamageIncrease;
-        StartCoroutine(LoadCloneAsset(clone));
+        clone.InitializeCloneFrom(this);
         return clone;
     }
 
-    private IEnumerator LoadCloneAsset(Champion clone)
+    public void ApplyModifier(IChampionModifier modifier)
+    {
+        modifier.Apply(this);
+    }
+
+    protected virtual void InitializeCloneFrom(Champion original)
+    {
+        IsCLone = true;
+        currentHealth = maxHealth;
+        outgoingDamageIncreaseModifier = 1f;
+        incomingDamageIncreaseModifier = 1f;
+
+        // ClearRuntimeState();
+    }
+
+    private void ClearRuntimeState()
+    {
+        // Clear status effects cooldowns and whatnot
+    }
+
+    public void ApplyCloneVisuals()
+    {
+        StartCoroutine(LoadCloneAsset());
+    }
+
+    private IEnumerator LoadCloneAsset()
     {
         var handle = Addressables.LoadAssetAsync<Material>("CloneMaterial");
         yield return handle;
-        clone.gameObject.GetComponent<MeshRenderer>().material = handle.Result;
+        GetComponent<MeshRenderer>().material = handle.Result;
     }
 }

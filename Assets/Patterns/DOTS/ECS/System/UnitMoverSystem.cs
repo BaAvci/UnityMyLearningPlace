@@ -13,14 +13,14 @@ partial struct UnitMoverSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach (var (localTransform, moveSpeed) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<MoveSpeed>>())
+        foreach (var (localTransform, moveSpeed) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<UnitStats>>())
         {
             var targetPosition = localTransform.ValueRO.Position + new float3(10, 0, 0);
             var moveDirection = targetPosition - localTransform.ValueRO.Position;
             moveDirection = math.normalizesafe(moveDirection);
 
             localTransform.ValueRW.Rotation = quaternion.LookRotation(moveDirection, math.up());
-            localTransform.ValueRW.Position += moveDirection * moveSpeed.ValueRO.Value * SystemAPI.Time.DeltaTime;
+            localTransform.ValueRW.Position += moveDirection * moveSpeed.ValueRO.MoveSpeed * SystemAPI.Time.DeltaTime;
         }
     }
 
